@@ -1,0 +1,28 @@
+@startuml
+
+autonumber
+
+DoSomething -> DoSomething: createRequestForA
+DoSomething -> ServiceA: doYourAThing
+note right
+ with service A's request
+end note
+
+ServiceA --> DoSomething: myAResponse
+
+DoSomething -> DoSomething: createRequestForServiceBFromResponseOfServiceA
+note right
+    this involves working with stream from collection
+    of response of A
+end note
+DoSomething -> ServiceB: doYourBThing
+
+ServiceB --> DoSomething: myBResponse
+DoSomething -> DoSomething: createFinalResponse
+note right
+    this involves filtering on B's response
+    and finally producing the domain object
+    for DoSomething's consumer
+end note
+
+@enduml
