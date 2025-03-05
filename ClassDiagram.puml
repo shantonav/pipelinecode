@@ -15,28 +15,32 @@ class SomeOtherRecord {
 RequestA --> SomeOtherRecord
 
 class ResponseA {
-    -listOf someOtherResponseAs
+    -List<SomeOtherResponseA> someOtherResponseAs
 }
 
 class SomeOtherResponseA{
-    -someResponseStra
+    -someResponseStr
     -someBigDecimal
     -someOtherBigDecimal
 }
 
-ResponseA --> SomeOtherResponseA
+ResponseA -up-> SomeOtherResponseA
 
 
 class RequestB{
     -someDouble
-    -listOf someOtherResponseAs
+    -List<SomeOtherResponseA> someOtherResponseAs
 }
 
 RequestB --> SomeOtherResponseA
 
 class ResponseB{
     mapOf
-     someKey => SomeOtherResponseB
+     SomeKey someKey => SomeOtherResponseB someOtherResponseB
+}
+class SomeKey{
+    -someStrKey
+    -someDoubleKey
 }
 
 class SomeOtherResponseB{
@@ -45,5 +49,14 @@ class SomeOtherResponseB{
 }
 
 ResponseB --> SomeOtherResponseB
+ResponseB --> SomeKey
+
+class FinalResponse{
+    -List<SomeOtherResponseA> someOtherResponseAs
+    -someOtherResponseB
+}
+
+FinalResponse -up-> SomeOtherResponseA
+FinalResponse -up-> SomeOtherResponseB
 
 @enduml

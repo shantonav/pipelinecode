@@ -100,7 +100,7 @@ public class DoSomethingClass {
 
 
     public record ResponseB(Map<SomeKey, SomeOtherResponseB> someOtherResponseB){}
-    public record SomeKey(String someStrKey, double someDubleKey) {}
+    public record SomeKey(String someStrKey, double someDoubleKey) {}
 
     public record SomeOtherResponseB(String someString, BigDecimal someBigDecimal) {}
 
