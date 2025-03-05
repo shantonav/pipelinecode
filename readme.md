@@ -12,4 +12,8 @@ There is an orchestration service let's call is DoSomething , that has an entry 
 which collects responses over 2 services A and B (B depends on the response of A)
 and finally produces a composite response which is useful in DoSomethings core logic.
 
+
 ![Use case in UML](UseCase.png)
+
+Class diagram
+![Class diagram](ClassDiagram.png)

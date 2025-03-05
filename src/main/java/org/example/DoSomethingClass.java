@@ -15,15 +15,14 @@ public class DoSomethingClass {
     public Optional<FinalResponse> doSomething(Integer someNumber, String someString,
                                                String correlationDataToFilter) throws ExecutionException, InterruptedException {
 
-        return CompletableFuture.supplyAsync(() -> new RequestA(someNumber, someString,
-                        new SomeOtherRecord(correlationDataToFilter, Integer.valueOf(200))))
-                .thenComposeAsync(this::invokeServiceA)
-                .thenComposeAsync(resp -> createRequestBFromResponseA(correlationDataToFilter, resp))
-                .thenComposeAsync(this::invokeServiceB)
-                .thenComposeAsync(contextB -> getFinalResponse(correlationDataToFilter, contextB.responseB(), contextB.requestB()))
-                .thenApplyAsync(Optional::ofNullable)
-                .get();
+        return Optional.empty();
 
+    }
+
+    private CompletableFuture<RequestA> createRequestA(Integer someNumber, String someString,
+                                                       String correlationDataToFilter) {
+        return CompletableFuture.supplyAsync(() -> new RequestA(someNumber, someString,
+                new SomeOtherRecord(correlationDataToFilter, Integer.valueOf(200))));
     }
 
     private CompletableFuture<FinalResponse> getFinalResponse(String correlationDataToFilter, ResponseB responseB, RequestB requestB) {

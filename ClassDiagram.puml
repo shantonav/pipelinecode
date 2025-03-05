@@ -1,0 +1,49 @@
+@startuml
+
+class RequestA {
+    -someNumber
+    -someString
+    -someOtherRecord : SomeOtherRecord
+}
+
+
+class SomeOtherRecord {
+    -someOtherString
+    -someOtherNumber
+}
+
+RequestA --> SomeOtherRecord
+
+class ResponseA {
+    -listOf someOtherResponseAs
+}
+
+class SomeOtherResponseA{
+    -someResponseStra
+    -someBigDecimal
+    -someOtherBigDecimal
+}
+
+ResponseA --> SomeOtherResponseA
+
+
+class RequestB{
+    -someDouble
+    -listOf someOtherResponseAs
+}
+
+RequestB --> SomeOtherResponseA
+
+class ResponseB{
+    mapOf
+     someKey => SomeOtherResponseB
+}
+
+class SomeOtherResponseB{
+    -someString
+    -someBigDecimal
+}
+
+ResponseB --> SomeOtherResponseB
+
+@enduml
