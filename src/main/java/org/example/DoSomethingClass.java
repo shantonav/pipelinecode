@@ -15,7 +15,13 @@ public class DoSomethingClass {
     public Optional<FinalResponse> doSomething(Integer someNumber, String someString,
                                                String correlationDataToFilter) throws ExecutionException, InterruptedException {
 
-        return Optional.empty();
+        return createRequestA(someNumber, someString, correlationDataToFilter)
+                .thenComposeAsync(this::invokeServiceA)
+                .thenComposeAsync(responseA -> createRequestBFromResponseA(correlationDataToFilter, responseA))
+                .thenComposeAsync(this::invokeServiceB)
+                .thenComposeAsync(contextForServiceB -> getFinalResponse(correlationDataToFilter, contextForServiceB.responseB(), contextForServiceB.requestB()))
+                .thenApplyAsync(Optional::ofNullable)
+                .get();
 
     }
 
