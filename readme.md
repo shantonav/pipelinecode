@@ -1,10 +1,21 @@
 ## Business logic as pipeline code
 
-### Objective
+### The monadic design pattern
 We are going to see how we can write Java business logic as pipeline code.
 
 - This involves usage of the powerful CompletableFuture of JDK
 - Stream derivatives
+
+### CompletableFuture example 
+```java
+CompletableFuture<String> completableFuture
+        = CompletableFuture.supplyAsync(() -> "Hello");
+
+CompletableFuture<String> future = completableFuture
+        .thenApply(s -> s + " World");
+
+assertEquals("Hello World", future.get());
+```
 
 ## Use case
 
