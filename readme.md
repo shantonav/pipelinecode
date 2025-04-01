@@ -20,6 +20,10 @@ assertEquals("Hello World", future.get());
 ### mondaic design patter
 ![Monadic patter](functional_composition.jpeg)
 
+```java
+addTen(divide(8,2))
+```
+
 ## Use case
 
 There is an orchestration service let's call is DoSomething , that has an entry point 
