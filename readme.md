@@ -17,6 +17,9 @@ CompletableFuture<String> future = completableFuture
 assertEquals("Hello World", future.get());
 ```
 
+### mondaic design patter
+![Monadic patter](functional_composition.jpeg)
+
 ## Use case
 
 There is an orchestration service let's call is DoSomething , that has an entry point 
